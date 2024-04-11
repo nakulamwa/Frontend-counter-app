@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"> This should change</div>
+    <script type="text/babel">
+        let rootNode = ReactDOM.createRoot(root);
+        let useState = React.useState; // now our component has state- it is stateful functional components
+
+
+        let MyFunComp = (props) => {
+
+
+            //state variable, component is re-rendered when this changes
+            let [counter,setCounter] = useState(27);
+            let [str,setStr] = useState("** ");
+            let [name,setName] = useState(props.name);
+            let [age,setAge] = useState((props.age) ? props.age : 25 );
+            let [bg,setBg] = useState(props.mybg || "cyan" );
+           
+            // let n =1;
+
+
+            let clickHandler = () => {
+                // console.log("hello!");
+                // n++;
+                // console.log(n);
+                counter++;
+                setCounter(counter);
+                console.log(counter);
+               
+                str=str+"** ";
+                setStr(str);
+
+
+                if(name === "sp"){
+                    setName("ps");
+                }
+
+
+            }
+
+
+            return (
+                <div>
+                    <h1 style={{backgroundColor:bg}}> Frontend Counter App </h1>
+                    <h3> Hello {name} ! </h3>
+                    count is {counter} <br/>
+                    {str} <br/>
+                    age is {age} <br/>
+                    Will retire in {(100-age)}  years<br/>
+                    <button onClick={clickHandler}> Counter </button>
+                </div>
+            );
+        }
+        // rootNode.render(<MyFunComp name="sp" age={24}/>);
+        // rootNode.render(<MyFunComp name="sp" age={35} mybg="pink" />);
+        rootNode.render(<MyFunComp name="sp" age={35} />);
+
+
+
+
+    </script>
+
+
+</body>
+</html>
